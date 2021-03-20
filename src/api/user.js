@@ -2,23 +2,26 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/oauth2/user/login',
     method: 'post',
     data
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    url: '/oauth2/user/profile',
+    method: 'get'
   })
 }
 
-export function logout() {
+export function logout(accessToken) {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    url: '/oauth2/oauth/token/revoke',
+    method: 'delete',
+    params: { 
+      'token': accessToken,
+      'token_type': 'accessToken' 
+    }
   })
 }
