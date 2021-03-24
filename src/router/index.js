@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
 import Layout from '@/layout'
 
 Vue.use(VueRouter)
@@ -11,11 +10,6 @@ const constantRoutes = [
         component: () => import('@/views/login/index'),
         hidden: true
     },
-    /*{
-        path: '/',
-        name: 'Home',
-        component: Home
-    },*/
     {
         path: '/',
         component: Layout,
@@ -26,6 +20,35 @@ const constantRoutes = [
             component: () => import('@/views/dashboard/index'),
             meta: { title: 'Dashboard', icon: 'dashboard' }
         }]
+    },
+    {
+        path: '/oauth2',
+        component: Layout,
+        redirect: '/oauth2/home',
+        name: 'OAuth2鉴权管理',
+        meta: { title: 'OAuth2鉴权管理', icon: 'table' },
+        children: [
+        //   {
+        //     path: '/home',
+        //     component: () => import('../views/Home.vue'),
+        //     meta: { title: 'home' }
+        //   },
+          {
+            path: 'client',
+            component: () => import('@/views/oauth2/client/index'),
+            meta: { title: '客户端管理' }
+          },
+          {
+            path: 'token',
+            component: () => import('@/views/oauth2/token/index'),
+            meta: { title: 'Token管理' }
+          },
+          {
+            path: 'client3',
+            component: () => import('@/views/oauth2/client/index'),
+            meta: { title: '权限控制' }
+          }
+        ]
     },
     {
         path: '/about',
