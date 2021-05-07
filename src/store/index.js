@@ -5,6 +5,7 @@ import app from './modules/app'
 import settings from './modules/settings'
 import errorLog from './modules/errorLog'
 import user from './modules/user'
+import cboardDatasource from './modules/cboard/datasource'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     app,
     settings,
     errorLog,
-    user
+    user,
+    cboardDatasource
   },
   getters
 })

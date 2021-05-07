@@ -51,6 +51,35 @@ const constantRoutes = [
         ]
     },
     {
+        path: '/cboard',
+        component: Layout,
+        redirect: '/oauth2/home',
+        name: 'CBoard',
+        meta: { title: 'CBoard', icon: 'table' },
+        children: [
+        //   {
+        //     path: '/home',
+        //     component: () => import('../views/Home.vue'),
+        //     meta: { title: 'home' }
+        //   },
+          {
+            path: 'datasoruce',
+            component: () => import('@/views/cboard/datasource/index'),
+            meta: { title: '数据源管理' }
+          },
+          {
+            path: 'token',
+            component: () => import('@/views/oauth2/token/index'),
+            meta: { title: '数据集管理' }
+          },
+          {
+            path: 'client3',
+            component: () => import('@/views/oauth2/client/index'),
+            meta: { title: '图表设计' }
+          }
+        ]
+    },
+    {
         path: '/about',
         name: 'About',
         // route level code-splitting
