@@ -15,9 +15,11 @@
     </div>
 
     <el-table :key="tableKey" :data="list"
+      :row-style="{height: '55px'}"
+      :cell-style="{padding: '0px'}"
       v-loading="listLoading" border fit
       highlight-current-row style="width: 100%;" >
-      <el-table-column label="AccessToken" prop="client_id" align="center" >
+      <el-table-column label="AccessToken" prop="client_id" align="center" width="330" >
         <template slot-scope="{row}">
           <span>{{ row.access_token }}</span>
         </template>
@@ -27,14 +29,14 @@
           <span>{{ row.token_type }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="RefreshToken" align="center">
+      <el-table-column label="RefreshToken" align="center" width="330" >
         <template slot-scope="{row}">
           <span>{{ row.refresh_token }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="作用域" width="110px" align="center">
+      <el-table-column label="作用域" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.scope }}</span>
+          <el-tag>{{ row.scope }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="Token有效期(秒)" align="center" >
@@ -42,7 +44,7 @@
           <span>{{ row.expires_in }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" width="100" fixed="right" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button type="danger" size="small" @click="handleDelete(row,$index)">
             删除

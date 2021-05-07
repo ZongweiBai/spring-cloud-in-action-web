@@ -25,8 +25,8 @@ const constantRoutes = [
         path: '/oauth2',
         component: Layout,
         redirect: '/oauth2/home',
-        name: 'OAuth2鉴权管理',
-        meta: { title: 'OAuth2鉴权管理', icon: 'table' },
+        name: '鉴权管理',
+        meta: { title: '鉴权管理', icon: 'table' },
         children: [
         //   {
         //     path: '/home',

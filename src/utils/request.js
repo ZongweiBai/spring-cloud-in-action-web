@@ -17,7 +17,7 @@ service.interceptors.request.use(
 
     if (store.getters.token) {
       // let each request carry token
-      // ['X-Token'] is a custom headers key
+      // ['Authorization'] is a custom headers key
       // please modify it according to the actual situation
       config.headers['Authorization'] = getOAuth2Token()
     }
@@ -45,7 +45,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
+    // if the status code large than 400, it is judged as an error.
     if (response.status >= 400) {
       Message({
         message: res.message || 'Error',

@@ -1,4 +1,4 @@
-# oauth2-server-web
+# spring-cloud-in-action-web
 
 ## Project setup
 ```

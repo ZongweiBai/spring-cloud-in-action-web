@@ -9,55 +9,61 @@
       </el-button>
     </div>
 
-    <el-table :key="tableKey" :data="list"
-      v-loading="listLoading" border fit
-      highlight-current-row style="width: 100%;" >
-      <el-table-column label="客户端ID" prop="client_id" align="center" width="80" >
-        <template slot-scope="{row}">
-          <span>{{ row.client_id }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="授权模式" align="center">
-        <template slot-scope="{row}">
-          <el-tag style="margin-top:4px;margin-left:4px;" v-for="(value, index) in row.authorized_grant_types" :key="index">{{ value }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="重定向URL" align="center">
-        <template slot-scope="{row}">
-          <span v-for="(value, index) in row.redirect_uri" :key="index" >{{ value }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="作用域" width="110px" align="center">
-        <template slot-scope="{row}">
-            <el-tag style="margin-top:4px;margin-left:4px;" v-for="(value, index) in row.scope" :key="index">{{ value }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="Token有效期" align="center" >
-        <template slot-scope="{row}">
-          <span v-if="row.access_token_validity===-1">永久有效</span>
-          <span v-else>{{ row.access_token_validity }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Token重置有效期" align="center" >
-        <template slot-scope="{row}">
-          <span v-if="row.refresh_token_validity===-1">永久有效</span>
-          <span v-else>{{ row.refresh_token_validity }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
-        <template slot-scope="{row,$index}">
-          <el-button type="primary" size="small" @click="handleUpdate(row)">
-            编辑
-          </el-button>
-          <el-button type="primary" size="small" @click="handlePatch(row)">
-            重置Secret
-          </el-button>
-          <el-button type="danger" size="small" @click="handleDelete(row,$index)">
-            删除
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <div>
+      <el-table :key="tableKey" :data="list" 
+        :row-style="{height: '55px'}"
+        :cell-style="{padding: '0px'}"
+        v-loading="listLoading" border fit
+        highlight-current-row style="width:100%;" >
+        <el-table-column label="客户端ID" prop="client_id" align="center" width="150" >
+          <template slot-scope="{row}">
+            <span>{{ row.client_id }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="授权模式" align="center" width="400"
+        :show-overflow-tooltip="true">
+          <template slot-scope="{row}">
+            <el-tag style="margin-top:4px;margin-left:4px;" v-for="(value, index) in row.authorized_grant_types" :key="index">{{ value }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="重定向URL" align="center" width="200">
+          <template slot-scope="{row}">
+            <span v-for="(value, index) in row.redirect_uri" :key="index" >{{ value }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="作用域" align="center" width="200"
+          :show-overflow-tooltip="true">
+          <template slot-scope="{row}">
+              <el-tag style="margin-top:4px;margin-left:4px;" v-for="(value, index) in row.scope" :key="index">{{ value }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="Token有效期" align="center" width="100" >
+          <template slot-scope="{row}">
+            <span v-if="row.access_token_validity===-1">永久有效</span>
+            <span v-else>{{ row.access_token_validity }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="Token重置有效期" align="center" width="100" >
+          <template slot-scope="{row}">
+            <span v-if="row.refresh_token_validity===-1">永久有效</span>
+            <span v-else>{{ row.refresh_token_validity }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="220" align="center" fixed="right" class-name="small-padding fixed-width">
+          <template slot-scope="{row,$index}">
+            <el-button type="primary" size="small" @click="handleUpdate(row)">
+              编辑
+            </el-button>
+            <el-button type="primary" size="small" @click="handlePatch(row)">
+              重置
+            </el-button>
+            <el-button type="danger" size="small" @click="handleDelete(row,$index)">
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="right" label-width="100px" style="width: 600px; ">
