@@ -63,13 +63,13 @@ const constantRoutes = [
         //     meta: { title: 'home' }
         //   },
           {
-            path: 'datasoruce',
+            path: 'datasource',
             component: () => import('@/views/cboard/datasource/index'),
             meta: { title: '数据源管理' }
           },
           {
-            path: 'token',
-            component: () => import('@/views/oauth2/token/index'),
+            path: 'dataset',
+            component: () => import('@/views/cboard/dataset/index'),
             meta: { title: '数据集管理' }
           },
           {
